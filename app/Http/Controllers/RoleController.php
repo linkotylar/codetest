@@ -32,10 +32,6 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $validated = $request->validate([
-            'name'                  =>  'required|unique:roles|max:255',
-            'display_name'          =>  'required|unique:roles|max:255',
-        ]);
 
         $tmpArr      = [];
         $permissions = [];
@@ -67,6 +63,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name'                  =>  'required|unique:roles|max:255',
+            'display_name'          =>  'required|unique:roles|max:255',
+        ]);
+        
         $role = new Role();
         $role->name             =  $request->name;
         $role->display_name     =  $request->display_name;
